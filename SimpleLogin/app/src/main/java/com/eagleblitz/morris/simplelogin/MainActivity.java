@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     EditText userText;
     EditText passText;
     TextView welcomeView;
+    TextView errorView;
 
     Button btn_login;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         userText = (EditText) findViewById(R.id.username);
         passText = (EditText) findViewById(R.id.password);
         welcomeView = (TextView) findViewById(R.id.welcomeView);
+        errorView = (TextView) findViewById(R.id.errorView);
 
         btn_login = (Button) findViewById(R.id.btn_login);
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             userText.setVisibility(View.VISIBLE);
             passText.setVisibility(View.VISIBLE);
             welcomeView.setVisibility(View.INVISIBLE);
-            btn_login.setText("LOGIN");
+            btn_login.setText(R.string.btn_login);
             loggedIn = false;
         } else {
             String username = userText.getText().toString();
@@ -50,15 +52,25 @@ public class MainActivity extends AppCompatActivity {
 
             if (username.equals("admin") && password.equals("icecream")) {
                 lockView.setImageResource(R.drawable.unlock);
+                userText.setText("");
                 userText.setVisibility(View.INVISIBLE);
                 passText.setVisibility(View.INVISIBLE);
                 welcomeView.setVisibility(View.VISIBLE);
-                btn_login.setText("LOGOUT");
+                errorView.setVisibility(View.INVISIBLE);
+                btn_login.setText(R.string.btn_logout);
+                attempts = 5;
                 loggedIn = true;
             } else {
                 attempts--;
-
+                if(attempts > 0) {
+                    errorView.setText("Incorrect! " + attempts + " " + ((attempts == 1) ? "attempt" : "attempts") + " remaining.");
+                    errorView.setVisibility(View.VISIBLE);
+                } else {
+                    btn_login.setEnabled(false);
+                    errorView.setText("Too many failed attempts. Portal is locked.");
+                }
             }
+            passText.setText("");
         }
     }
 }
