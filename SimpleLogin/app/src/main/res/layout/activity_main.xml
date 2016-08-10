@@ -12,10 +12,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Simple Login"
+        android:text="@string/app_name"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:id="@+id/titleText" />
 
     <ImageView
@@ -33,7 +33,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/username"
-        android:hint="Username"
+        android:hint="@string/u_hint"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/lockView"
         android:layout_centerHorizontal="true" />
@@ -44,16 +44,30 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/password"
-        android:hint="Password"
+        android:hint="@string/p_hint"
         android:layout_below="@+id/username"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
-        android:id="@+id/button"
-        android:layout_below="@+id/password"
+        android:text="@string/btn_login"
+        android:id="@+id/btn_login"
+        android:onClick="login"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/welcomeView"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:visibility="invisible"
+        android:text="@string/welcome_msg"
+        android:id="@+id/welcomeView"
+        android:layout_alignBottom="@+id/password"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#0dbe00" />
 
 </RelativeLayout>

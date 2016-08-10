@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Simple Login</string>
+    <string name="u_hint">Username</string>
+    <string name="p_hint">Password</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="welcome_msg">Congratulations! You have successfully logged in.</string>
 </resources>
