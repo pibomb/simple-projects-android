@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     errorView.setVisibility(View.VISIBLE);
                 } else {
                     btn_login.setEnabled(false);
-                    errorView.setText("Too many failed attempts. Portal is locked.");
+                    errorView.setText(R.string.portal_locked_msg);
                 }
             }
             passText.setText("");
