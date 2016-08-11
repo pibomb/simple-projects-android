@@ -34,14 +34,16 @@
         android:progress="25"
         android:progressTint="#00ff00"
         android:secondaryProgressTint="#ff0000"
-        android:secondaryProgress="50" />
+        android:secondaryProgress="50"
+        android:max="100"
+        android:indeterminate="false" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Answer"
-        android:id="@+id/answerView"
+        android:text="Input"
+        android:id="@+id/inputView"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/questionView"
         android:textStyle="italic"
@@ -53,7 +55,7 @@
         android:layout_gravity="center"
         android:columnCount="3"
         android:orientation="horizontal"
-        android:layout_below="@+id/answerView"
+        android:layout_below="@+id/inputView"
         android:layout_centerHorizontal="true">
 
         <Button android:text="@string/numpad_7"
