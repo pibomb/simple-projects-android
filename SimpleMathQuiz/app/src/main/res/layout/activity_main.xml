@@ -19,9 +19,9 @@
         android:id="@+id/questionView"
         android:textSize="72dp"
         android:textStyle="bold"
+        android:layout_marginTop="36dp"
         android:layout_below="@+id/progressBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp" />
+        android:layout_centerHorizontal="true" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
@@ -31,10 +31,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:progress="30"
-        android:progressTint="#ff0000"
-        android:secondaryProgressTint="#757575"
-        android:secondaryProgress="100" />
+        android:progress="25"
+        android:progressTint="#00ff00"
+        android:secondaryProgressTint="#ff0000"
+        android:secondaryProgress="50" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,36 +56,55 @@
         android:layout_below="@+id/answerView"
         android:layout_centerHorizontal="true">
 
-        <Button android:text="7" />
+        <Button android:text="@string/numpad_7"
+            android:id="@+id/btn_7" />
 
-        <Button android:text="8" />
+        <Button android:text="@string/numpad_8"
+            android:id="@+id/btn_8" />
 
-        <Button android:text="9" />
+        <Button android:text="@string/numpad_9"
+            android:id="@+id/btn_9" />
 
-        <Button android:text="4" />
+        <Button android:text="@string/numpad_4"
+            android:id="@+id/btn_4" />
 
-        <Button android:text="5" />
+        <Button android:text="@string/numpad_5"
+            android:id="@+id/btn_5" />
 
-        <Button android:text="6" />
+        <Button android:text="@string/numpad_6"
+            android:id="@+id/btn_6" />
 
-        <Button android:text="1" />
+        <Button android:text="@string/numpad_1"
+            android:id="@+id/btn_1" />
 
-        <Button android:text="2" />
+        <Button android:text="@string/numpad_2"
+            android:id="@+id/btn_2" />
 
-        <Button android:text="3" />
+        <Button android:text="@string/numpad_3"
+            android:id="@+id/btn_3" />
 
         <Button
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            android:text="0" />
+            android:text="@string/numpad_0"
+            android:id="@+id/btn_0" />
 
-        <Button android:text="&lt;-" />
+        <Button android:text="@string/numpad_bksp" />
 
         <Button
             android:layout_columnSpan="3"
             android:layout_gravity="fill"
-            android:text="ENTER" />
+            android:text="@string/numpad_enter" />
 
     </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Score"
+        android:id="@+id/scoreView"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
