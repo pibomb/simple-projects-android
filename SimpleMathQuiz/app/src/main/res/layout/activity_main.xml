@@ -17,10 +17,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Question"
         android:id="@+id/questionView"
-        android:textSize="72dp"
+        android:textSize="48sp"
         android:textStyle="bold"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/progressBar"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/scoreView"
         android:layout_centerHorizontal="true" />
 
     <ProgressBar
@@ -31,10 +31,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:progress="25"
+        android:progress="0"
         android:progressTint="#00ff00"
         android:secondaryProgressTint="#ff0000"
-        android:secondaryProgress="50"
+        android:secondaryProgress="0"
         android:max="100"
         android:indeterminate="false" />
 
@@ -47,7 +47,17 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/questionView"
         android:textStyle="italic"
-        android:textSize="48sp" />
+        android:textSize="36dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Score"
+        android:id="@+id/scoreView"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true" />
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -56,7 +66,9 @@
         android:columnCount="3"
         android:orientation="horizontal"
         android:layout_below="@+id/inputView"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/numpadLayout"
+        android:layout_marginTop="10dp">
 
         <Button android:text="@string/numpad_7"
             android:id="@+id/btn_7" />
@@ -91,22 +103,27 @@
             android:text="@string/numpad_0"
             android:id="@+id/btn_0" />
 
-        <Button android:text="@string/numpad_bksp" />
+        <Button android:text="@string/numpad_bksp"
+            android:id="@+id/btn_bksp" />
 
         <Button
             android:layout_columnSpan="3"
             android:layout_gravity="fill"
-            android:text="@string/numpad_enter" />
+            android:text="@string/numpad_enter"
+            android:id="@+id/btn_enter" />
 
     </GridLayout>
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Score"
-        android:id="@+id/scoreView"
-        android:layout_below="@+id/progressBar"
-        android:layout_centerHorizontal="true" />
+        android:text="Play Again"
+        android:id="@+id/reset"
+        android:layout_alignParentBottom="false"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/inputView"
+        android:layout_marginTop="120dp"
+        android:visibility="invisible"
+        android:onClick="reset" />
 
 </RelativeLayout>

@@ -38,11 +38,11 @@ public class MathQuestion {
                 num2 = random.nextInt(13);
                 break;
             case DIVISION:
-                num2 = random.nextInt(13);
-                num1 = random.nextInt(13) * num2;
+                num2 = random.nextInt(12) + 1;
+                num1 = (random.nextInt(12) + 1) * num2;
                 break;
             case MODULUS:
-                num2 = random.nextInt(13);
+                num2 = random.nextInt(12) + 2;
                 num1 = random.nextInt(100-num2) + num2;
                 break;
             default:
@@ -51,7 +51,7 @@ public class MathQuestion {
         }
     }
 
-    public int answer() {
+    public int getAnswer() {
         switch (operation) {
             case ADDITION: return num1 + num2;
             case SUBTRACTION: return num1 - num2;
@@ -70,8 +70,8 @@ public class MathQuestion {
         switch (operation) {
             case ADDITION: operator = '+'; break;
             case SUBTRACTION: operator = '-'; break;
-            case MULTIPLICATION: operator = '*'; break;
-            case DIVISION: operator = '/'; break;
+            case MULTIPLICATION: operator = '×'; break;
+            case DIVISION: operator = '÷'; break;
             case MODULUS: operator = '%'; break;
             default: operator = '?';
         }
