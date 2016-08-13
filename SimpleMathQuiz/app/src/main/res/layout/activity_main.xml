@@ -71,46 +71,58 @@
         android:layout_marginTop="10dp">
 
         <Button android:text="@string/numpad_7"
-            android:id="@+id/btn_7" />
+            android:id="@+id/btn_7"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_8"
-            android:id="@+id/btn_8" />
+            android:id="@+id/btn_8"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_9"
-            android:id="@+id/btn_9" />
+            android:id="@+id/btn_9"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_4"
-            android:id="@+id/btn_4" />
+            android:id="@+id/btn_4"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_5"
-            android:id="@+id/btn_5" />
+            android:id="@+id/btn_5"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_6"
-            android:id="@+id/btn_6" />
+            android:id="@+id/btn_6"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_1"
-            android:id="@+id/btn_1" />
+            android:id="@+id/btn_1"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_2"
-            android:id="@+id/btn_2" />
+            android:id="@+id/btn_2"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_3"
-            android:id="@+id/btn_3" />
+            android:id="@+id/btn_3"
+            android:background="@drawable/numpad_key" />
 
         <Button
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
             android:text="@string/numpad_0"
-            android:id="@+id/btn_0" />
+            android:id="@+id/btn_0"
+            android:background="@drawable/numpad_key" />
 
         <Button android:text="@string/numpad_bksp"
-            android:id="@+id/btn_bksp" />
+            android:id="@+id/btn_bksp"
+            android:background="@drawable/numpad_key" />
 
         <Button
             android:layout_columnSpan="3"
             android:layout_gravity="fill"
             android:text="@string/numpad_enter"
-            android:id="@+id/btn_enter" />
+            android:id="@+id/btn_enter"
+            android:background="@drawable/numpad_key" />
 
     </GridLayout>
 

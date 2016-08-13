@@ -42,7 +42,7 @@ public class MathQuestion {
                 num1 = (random.nextInt(12) + 1) * num2;
                 break;
             case MODULUS:
-                num2 = random.nextInt(12) + 2;
+                num2 = random.nextInt(10) + 2;
                 num1 = random.nextInt(100-num2) + num2;
                 break;
             default:
