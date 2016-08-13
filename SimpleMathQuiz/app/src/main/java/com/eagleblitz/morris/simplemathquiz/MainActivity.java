@@ -1,6 +1,8 @@
 package com.eagleblitz.morris.simplemathquiz;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button quickButton, standardButton, extendedButton, marathonButton;
     Map<Button, Integer> questions = new HashMap<Button, Integer>();
+
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         questions.put(standardButton, 25);
         questions.put(extendedButton, 50);
         questions.put(marathonButton, 100);
+
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     private void play(int q) {
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void mainMenuSelection(View view) {
         if(view instanceof Button) {
+            vibrator.vibrate(25);
             Integer q = questions.get(view);
 
             if(q != null)

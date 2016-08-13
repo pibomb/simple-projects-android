@@ -1,6 +1,8 @@
 package com.eagleblitz.morris.simplemathquiz;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -27,6 +29,7 @@ public class QuizActivity extends AppCompatActivity {
     Numpad numpad;
 
     Toast toast;
+    Vibrator vibrator;
 
     int correct = 0;
     int answered = 0;
@@ -62,9 +65,11 @@ public class QuizActivity extends AppCompatActivity {
 
         startQuestion();
         startTime = System.currentTimeMillis();
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     public void reset(View view) {
+        vibrator.vibrate(25);
         finish();
     }
 
@@ -75,10 +80,13 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void checkAnswer() {
-        String text = "Incorrect!";
+        String text;
         if(mathQuestion.getAnswer() == numpad.getInput()) {
             correct++;
             text = "Correct!";
+        } else {
+            text = "Incorrect!";
+            vibrator.vibrate(250);
         }
         answered++;
 
@@ -151,6 +159,7 @@ public class QuizActivity extends AppCompatActivity {
             View.OnClickListener listener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    vibrator.vibrate(25);
                     int id = v.getId();
                     int item = idMap.get(id);
                     if(0 <= item && item <= 9) {
