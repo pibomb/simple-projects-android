@@ -31,7 +31,7 @@ public class MathQuestion {
                 break;
             case SUBTRACTION:
                 num1 = random.nextInt(100);
-                num2 = random.nextInt(num1);
+                num2 = random.nextInt(num1+1);
                 break;
             case MULTIPLICATION:
                 num1 = random.nextInt(13);

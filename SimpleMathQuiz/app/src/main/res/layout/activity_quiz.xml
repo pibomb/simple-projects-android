@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.eagleblitz.morris.simplemathquiz.MainActivity"
-    android:background="@drawable/simplemathbackground">
+    android:background="@drawable/paperbackground">
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,91 +64,151 @@
         android:layout_gravity="center"
         android:columnCount="3"
         android:orientation="horizontal"
+        android:id="@+id/numpadLayout"
         android:layout_below="@+id/inputView"
         android:layout_centerHorizontal="true"
-        android:id="@+id/numpadLayout"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="18dp">
 
-        <Button android:text="@string/numpad_7"
+        <Button
+            android:text="@string/numpad_7"
             android:id="@+id/btn_7"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_8"
+        <Button
+            android:text="@string/numpad_8"
             android:id="@+id/btn_8"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_9"
+        <Button
+            android:text="@string/numpad_9"
             android:id="@+id/btn_9"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_4"
+        <Button
+            android:text="@string/numpad_4"
             android:id="@+id/btn_4"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_5"
+        <Button
+            android:text="@string/numpad_5"
             android:id="@+id/btn_5"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_6"
+        <Button
+            android:text="@string/numpad_6"
             android:id="@+id/btn_6"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_1"
+        <Button
+            android:text="@string/numpad_1"
             android:id="@+id/btn_1"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_2"
+        <Button
+            android:text="@string/numpad_2"
             android:id="@+id/btn_2"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_3"
+        <Button
+            android:text="@string/numpad_3"
             android:id="@+id/btn_3"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <Button
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
             android:text="@string/numpad_0"
             android:id="@+id/btn_0"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <Button android:text="@string/numpad_bksp"
+        <Button
+            android:text="@string/numpad_bksp"
             android:id="@+id/btn_bksp"
-            android:background="@drawable/numpad_key" />
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <Button
             android:layout_columnSpan="3"
             android:layout_gravity="fill"
             android:text="@string/numpad_enter"
             android:id="@+id/btn_enter"
-            android:background="@drawable/numpad_key" />
-
+            android:background="@drawable/numpad_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </GridLayout>
 
-    <Button
-        android:layout_width="120dp"
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play Again"
-        android:id="@+id/resetButton"
-        android:layout_alignParentBottom="false"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:id="@+id/miniMenuLayout"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/inputView"
-        android:layout_marginTop="120dp"
-        android:visibility="invisible"
-        android:onClick="reset"
-        android:background="@drawable/navigation_button" />
+        android:layout_marginBottom="90dp"
+        android:visibility="invisible">
 
-    <Button
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="MAIN MENU"
-        android:id="@+id/exitButton"
-        android:layout_alignParentBottom="false"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/resetButton"
-        android:onClick="exit"
-        android:background="@drawable/navigation_button"
-        android:visibility="invisible"
-        android:layout_marginTop="10dp" />
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Play Again"
+            android:id="@+id/resetButton"
+            android:onClick="reset"
+            android:background="@drawable/navigation_button"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Main Menu"
+            android:id="@+id/exitButton"
+            android:onClick="exit"
+            android:background="@drawable/navigation_button"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Statistics"
+            android:id="@+id/button"
+            android:background="@drawable/navigation_button"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Answers"
+            android:id="@+id/button2"
+            android:background="@drawable/navigation_button"
+            android:layout_below="@+id/button"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+    </GridLayout>
 
 </RelativeLayout>

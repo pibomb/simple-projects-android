@@ -23,6 +23,7 @@ public class QuizActivity extends AppCompatActivity {
     TextView scoreView;
     ProgressBar progressBar;
     GridLayout numpadLayout;
+    GridLayout miniMenuLayout;
     Button resetButton;
     Button exitButton;
 
@@ -46,8 +47,12 @@ public class QuizActivity extends AppCompatActivity {
         questionView = (TextView) findViewById(R.id.questionView);
         inputView = (TextView) findViewById(R.id.inputView);
         scoreView = (TextView) findViewById(R.id.scoreView);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         numpadLayout = (GridLayout) findViewById(R.id.numpadLayout);
+        miniMenuLayout = (GridLayout) findViewById(R.id.miniMenuLayout);
+
         resetButton = (Button) findViewById(R.id.resetButton);
         exitButton = (Button) findViewById(R.id.exitButton);
 
@@ -76,8 +81,7 @@ public class QuizActivity extends AppCompatActivity {
         correct = 0;
         answered = 0;
 
-        resetButton.setVisibility(View.INVISIBLE);
-        exitButton.setVisibility(View.INVISIBLE);
+        miniMenuLayout.setVisibility(View.INVISIBLE);
 
         start();
     }
@@ -129,13 +133,11 @@ public class QuizActivity extends AppCompatActivity {
         toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.show();
 
-        progressBar.setVisibility(View.INVISIBLE);
         scoreView.setVisibility(View.INVISIBLE);
         questionView.setText("FINISHED");
         inputView.setText(String.format("Score: %d/%d", correct, total));
         numpadLayout.setVisibility(View.INVISIBLE);
-        resetButton.setVisibility(View.VISIBLE);
-        exitButton.setVisibility(View.VISIBLE);
+        miniMenuLayout.setVisibility(View.VISIBLE);
     }
 
     class Numpad {
