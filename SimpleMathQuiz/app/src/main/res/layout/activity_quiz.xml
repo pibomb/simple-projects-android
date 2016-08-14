@@ -8,8 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.eagleblitz.morris.simplemathquiz.MainActivity"
-    android:backgroundTint="#f0fa91"
-    android:background="@color/accent_material_dark">
+    android:background="@drawable/simplemathbackground">
 
     <TextView
         android:layout_width="wrap_content"
@@ -130,7 +129,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Play Again"
-        android:id="@+id/reset"
+        android:id="@+id/resetButton"
         android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/inputView"
@@ -138,5 +137,18 @@
         android:visibility="invisible"
         android:onClick="reset"
         android:background="@drawable/navigation_button" />
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="MAIN MENU"
+        android:id="@+id/exitButton"
+        android:layout_alignParentBottom="false"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/resetButton"
+        android:onClick="exit"
+        android:background="@drawable/navigation_button"
+        android:visibility="invisible"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

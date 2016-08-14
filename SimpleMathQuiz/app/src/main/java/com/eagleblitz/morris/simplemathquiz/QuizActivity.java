@@ -24,6 +24,7 @@ public class QuizActivity extends AppCompatActivity {
     ProgressBar progressBar;
     GridLayout numpadLayout;
     Button resetButton;
+    Button exitButton;
 
     MathQuestion mathQuestion;
     Numpad numpad;
@@ -47,7 +48,8 @@ public class QuizActivity extends AppCompatActivity {
         scoreView = (TextView) findViewById(R.id.scoreView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         numpadLayout = (GridLayout) findViewById(R.id.numpadLayout);
-        resetButton = (Button) findViewById(R.id.reset);
+        resetButton = (Button) findViewById(R.id.resetButton);
+        exitButton = (Button) findViewById(R.id.exitButton);
 
         total = getIntent().getIntExtra("total", 25);
 
@@ -69,6 +71,18 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void reset(View view) {
+        vibrator.vibrate(25);
+
+        correct = 0;
+        answered = 0;
+
+        resetButton.setVisibility(View.INVISIBLE);
+        exitButton.setVisibility(View.INVISIBLE);
+
+        start();
+    }
+
+    public void exit(View view) {
         vibrator.vibrate(25);
         finish();
     }
@@ -112,35 +126,16 @@ public class QuizActivity extends AppCompatActivity {
         if(toast != null)
             toast.cancel();
         toast = Toast.makeText(this, String.format("Completed in %.3f seconds.", (double)totalTime/1000), Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.show();
 
         progressBar.setVisibility(View.INVISIBLE);
         scoreView.setVisibility(View.INVISIBLE);
-        questionView.setText("GAME OVER");
+        questionView.setText("FINISHED");
         inputView.setText(String.format("Score: %d/%d", correct, total));
         numpadLayout.setVisibility(View.INVISIBLE);
         resetButton.setVisibility(View.VISIBLE);
-    }
-
-    private void initNumpad() {
-        numpad = new Numpad();
-
-        Resources r = getResources();
-        String name = getPackageName();
-
-        for(int i = 0; i < numpad.keys.length; i++) {
-            int id = r.getIdentifier(String.format("btn_%d", i), "id", name);
-            numpad.keys[i] = (Button) findViewById(id);
-            numpad.idMap.put(id, i);
-        }
-
-        numpad.backspace = (Button) findViewById(R.id.btn_bksp);
-        numpad.enter = (Button) findViewById(R.id.btn_enter);
-
-        numpad.idMap.put(R.id.btn_bksp, Numpad.BACKSPACE);
-        numpad.idMap.put(R.id.btn_enter, Numpad.ENTER);
-
-        numpad.addListener();
+        exitButton.setVisibility(View.VISIBLE);
     }
 
     class Numpad {
@@ -196,5 +191,27 @@ public class QuizActivity extends AppCompatActivity {
         int getInput() {
             return value;
         }
+    }
+
+
+    private void initNumpad() {
+        numpad = new Numpad();
+
+        Resources r = getResources();
+        String name = getPackageName();
+
+        for(int i = 0; i < numpad.keys.length; i++) {
+            int id = r.getIdentifier(String.format("btn_%d", i), "id", name);
+            numpad.keys[i] = (Button) findViewById(id);
+            numpad.idMap.put(id, i);
+        }
+
+        numpad.backspace = (Button) findViewById(R.id.btn_bksp);
+        numpad.enter = (Button) findViewById(R.id.btn_enter);
+
+        numpad.idMap.put(R.id.btn_bksp, Numpad.BACKSPACE);
+        numpad.idMap.put(R.id.btn_enter, Numpad.ENTER);
+
+        numpad.addListener();
     }
 }
