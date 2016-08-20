@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +42,7 @@ public class QuizActivity extends AppCompatActivity implements StatisticsDialog.
 
     Toast toast;
     Vibrator vibrator;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class QuizActivity extends AppCompatActivity implements StatisticsDialog.
 
         int total = getIntent().getIntExtra("total", 25);
         stats = new GameStatistics(total);
+
+        mp = new MediaPlayer();
 
         initNumpad();
 
@@ -133,14 +137,16 @@ public class QuizActivity extends AppCompatActivity implements StatisticsDialog.
         stats.addQuestion(mathQuestion, in);
 
         if(ans == in) {
-            MediaPlayer.create(QuizActivity.this, R.raw.correct_answer).start();
+            mp = MediaPlayer.create(QuizActivity.this, R.raw.correct_answer);
             stats.correct++;
             text = "Correct!";
         } else {
-            MediaPlayer.create(QuizActivity.this, R.raw.incorrect_answer).start();
+            mp = MediaPlayer.create(QuizActivity.this, R.raw.incorrect_answer);
             text = "Incorrect!";
             vibrator.vibrate(250);
         }
+        
+        mp.start();
 
         if(toast != null)
             toast.cancel();

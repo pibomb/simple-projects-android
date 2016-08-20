@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void play(int q) {
+        Animations.fadeSwitch(this, currentView, mainMenuLayout);
+        currentView = mainMenuLayout;
+
         Intent intent = new Intent();
         intent.setClass(this, QuizActivity.class);
         intent.putExtra("total", q);
@@ -89,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
             Animations.fadeSwitch(this, currentView, mainMenuLayout);
+            currentView = mainMenuLayout;
             return true;
         }
         return super.onKeyDown(keyCode, event);
