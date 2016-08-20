@@ -1,7 +1,12 @@
 package com.eagleblitz.morris.simplemathquiz;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +21,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity implements StatisticsDialog.OnFragmentInteractionListener {
 
     TextView questionView;
     TextView inputView;
@@ -26,18 +31,16 @@ public class QuizActivity extends AppCompatActivity {
     GridLayout miniMenuLayout;
     Button resetButton;
     Button exitButton;
+    Button statsButton;
+    Button ansButton;
 
     MathQuestion mathQuestion;
     Numpad numpad;
 
+    GameStatistics stats;
+
     Toast toast;
     Vibrator vibrator;
-
-    int correct = 0;
-    int answered = 0;
-    int total = 25;
-
-    long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +58,11 @@ public class QuizActivity extends AppCompatActivity {
 
         resetButton = (Button) findViewById(R.id.resetButton);
         exitButton = (Button) findViewById(R.id.exitButton);
+        statsButton = (Button) findViewById(R.id.statsButton);
+        ansButton = (Button) findViewById(R.id.ansButton);
 
-        total = getIntent().getIntExtra("total", 25);
+        int total = getIntent().getIntExtra("total", 25);
+        stats = new GameStatistics(total);
 
         initNumpad();
 
@@ -70,16 +76,16 @@ public class QuizActivity extends AppCompatActivity {
         numpadLayout.setVisibility(View.VISIBLE);
         updateScore();
 
-        startQuestion();
-        startTime = System.currentTimeMillis();
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        startQuestion();
+        stats.timeAnswered[0] = System.currentTimeMillis();
     }
 
     public void reset(View view) {
-        vibrator.vibrate(25);
+        vibrator.vibrate(10);
 
-        correct = 0;
-        answered = 0;
+        int total = stats.total;
+        stats = new GameStatistics(total);
 
         miniMenuLayout.setVisibility(View.INVISIBLE);
 
@@ -87,8 +93,26 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void exit(View view) {
-        vibrator.vibrate(25);
+        vibrator.vibrate(10);
         finish();
+    }
+
+    public void viewStats(View view) {
+        vibrator.vibrate(10);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        StatisticsDialog dialog = StatisticsDialog.newInstance(stats);
+
+        dialog.show(ft, "StatisticsDialog");
+    }
+
+    public void showAnswers(View view) {
+        vibrator.vibrate(10);
+        Intent intent = new Intent();
+        intent.setClass(this, AnswerReviewActivity.class);
+        intent.putExtra("stats", stats);
+        startActivity(intent);
     }
 
     private void startQuestion() {
@@ -98,15 +122,25 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void checkAnswer() {
+        stats.answered++;
+        stats.timeAnswered[stats.answered] = System.currentTimeMillis();
+
         String text;
-        if(mathQuestion.getAnswer() == numpad.getInput()) {
-            correct++;
+
+        int ans = mathQuestion.getAnswer();
+        int in = numpad.getInput();
+
+        stats.addQuestion(mathQuestion, in);
+
+        if(ans == in) {
+            MediaPlayer.create(QuizActivity.this, R.raw.correct_answer).start();
+            stats.correct++;
             text = "Correct!";
         } else {
+            MediaPlayer.create(QuizActivity.this, R.raw.incorrect_answer).start();
             text = "Incorrect!";
             vibrator.vibrate(250);
         }
-        answered++;
 
         if(toast != null)
             toast.cancel();
@@ -118,14 +152,14 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void updateScore() {
-        progressBar.setProgress(correct * 100 / total);
-        progressBar.setSecondaryProgress(answered * 100 / total);
+        progressBar.setProgress(stats.correct * 100 / stats.total);
+        progressBar.setSecondaryProgress(stats.answered * 100 / stats.total);
 
-        scoreView.setText(String.format("Score: %d/%d", correct, total));
+        scoreView.setText(String.format("Score: %d/%d", stats.correct, stats.total));
     }
 
     private void gameOver() {
-        long totalTime = System.currentTimeMillis() - startTime;
+        long totalTime = System.currentTimeMillis() - stats.timeAnswered[0];
 
         if(toast != null)
             toast.cancel();
@@ -135,9 +169,14 @@ public class QuizActivity extends AppCompatActivity {
 
         scoreView.setVisibility(View.INVISIBLE);
         questionView.setText("FINISHED");
-        inputView.setText(String.format("Score: %d/%d", correct, total));
+        inputView.setText(String.format("Score: %d/%d", stats.correct, stats.total));
         numpadLayout.setVisibility(View.INVISIBLE);
         miniMenuLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onFragmentInteraction(GameStatistics stats) {
+
     }
 
     class Numpad {
@@ -174,7 +213,7 @@ public class QuizActivity extends AppCompatActivity {
                         checkAnswer();
                         value = 0;
                         inputView.setText("________");
-                        if(answered < total) {
+                        if(stats.answered < stats.total) {
                             startQuestion();
                         } else {
                             gameOver();
@@ -216,4 +255,6 @@ public class QuizActivity extends AppCompatActivity {
 
         numpad.addListener();
     }
+
+
 }

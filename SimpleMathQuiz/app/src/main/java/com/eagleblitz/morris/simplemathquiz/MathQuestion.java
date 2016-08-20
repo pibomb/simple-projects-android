@@ -1,12 +1,15 @@
 package com.eagleblitz.morris.simplemathquiz;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Locale;
 import java.util.Random;
 
 /**
  * Created by mcmor on 2016-08-11.
  */
-public class MathQuestion {
+public class MathQuestion implements Parcelable {
 
     public static final int ADDITION = 0;
     public static final int SUBTRACTION = 1;
@@ -78,4 +81,36 @@ public class MathQuestion {
 
         return String.format(Locale.getDefault(), result, num1, operator, num2);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeSerializable(this.random);
+        dest.writeInt(this.num1);
+        dest.writeInt(this.num2);
+        dest.writeInt(this.operation);
+    }
+
+    protected MathQuestion(Parcel in) {
+        this.random = (Random) in.readSerializable();
+        this.num1 = in.readInt();
+        this.num2 = in.readInt();
+        this.operation = in.readInt();
+    }
+
+    public static final Creator<MathQuestion> CREATOR = new Creator<MathQuestion>() {
+        @Override
+        public MathQuestion createFromParcel(Parcel source) {
+            return new MathQuestion(source);
+        }
+
+        @Override
+        public MathQuestion[] newArray(int size) {
+            return new MathQuestion[size];
+        }
+    };
 }

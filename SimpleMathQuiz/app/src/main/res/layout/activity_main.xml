@@ -19,51 +19,114 @@
         android:id="@+id/textView"
         android:textSize="30dp"
         android:textStyle="bold"
+        android:layout_marginTop="42dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Quick"
-        android:id="@+id/btn_quick"
+    <ImageView
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        android:id="@+id/imageView"
+        android:background="@drawable/simple_math_quiz_icon"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/navigation_button"
-        android:onClick="mainMenuSelection" />
+        android:layout_marginTop="10dp" />
 
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Standard"
-        android:id="@+id/btn_standard"
-        android:layout_below="@+id/btn_quick"
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/instructions_content"
+        android:id="@+id/instructionsTextView"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/navigation_button"
-        android:layout_marginTop="12dp"
-        android:onClick="mainMenuSelection" />
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="36dp"
+        android:layout_below="@+id/imageView"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:visibility="invisible" />
 
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_extended"
-        android:layout_below="@+id/btn_standard"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/navigation_button"
-        android:text="Extended"
-        android:onClick="mainMenuSelection" />
+        android:layout_marginTop="10dp"
+        android:id="@+id/mainMenuLayout">
 
-    <Button
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Marathon"
-        android:id="@+id/btn_marathon"
-        android:layout_below="@+id/btn_extended"
-        android:layout_alignStart="@+id/btn_extended"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/navigation_button"
-        android:onClick="mainMenuSelection" />
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:id="@+id/playButton"
+            android:background="@drawable/navigation_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:onClick="mainMenuPlay" />
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Instructions"
+            android:id="@+id/instructionsButton"
+            android:layout_below="@+id/playButton"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/navigation_button"
+            android:onClick="mainMenuInstructions" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/playLayout"
+        android:visibility="invisible">
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Quick (10)"
+            android:id="@+id/btn_quick"
+            android:background="@drawable/navigation_button"
+            android:layout_alignStart="@+id/btn_standard"
+            android:onClick="gameSelection"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Standard (25)"
+            android:id="@+id/btn_standard"
+            android:layout_below="@+id/btn_quick"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/navigation_button"
+            android:layout_marginBottom="12dp"
+            android:onClick="gameSelection" />
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_extended"
+            android:layout_below="@+id/btn_standard"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/navigation_button"
+            android:text="Extended (50)"
+            android:onClick="gameSelection"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Marathon (100)"
+            android:id="@+id/btn_marathon"
+            android:layout_below="@+id/btn_extended"
+            android:layout_alignStart="@+id/btn_extended"
+            android:background="@drawable/navigation_button"
+            android:onClick="gameSelection"
+            android:layout_marginBottom="12dp" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

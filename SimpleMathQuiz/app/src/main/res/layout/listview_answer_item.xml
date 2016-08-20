@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/listItem">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Time"
+        android:id="@+id/timeTextView"
+        android:layout_below="@+id/questionTextView"
+        android:layout_alignStart="@+id/questionTextView"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Input"
+        android:id="@+id/inputTextView"
+        android:layout_alignTop="@+id/numberTextView"
+        android:layout_toEndOf="@+id/questionTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Answer"
+        android:id="@+id/answerTextView"
+        android:layout_above="@+id/timeTextView"
+        android:layout_toStartOf="@+id/markImageView"
+        android:layout_marginRight="4dp" />
+
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="#"
+        android:id="@+id/numberTextView"
+        android:layout_marginLeft="8dp"
+        android:textIsSelectable="false"
+        android:textSize="16dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:gravity="right" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Question"
+        android:id="@+id/questionTextView"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/inputTextView"
+        android:layout_toEndOf="@+id/numberTextView" />
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/markImageView"
+        android:layout_alignTop="@+id/answerTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/check" />
+
+</RelativeLayout>

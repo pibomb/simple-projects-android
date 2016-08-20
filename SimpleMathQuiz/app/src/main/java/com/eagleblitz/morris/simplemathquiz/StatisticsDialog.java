@@ -1,17 +1,25 @@
 package com.eagleblitz.morris.simplemathquiz;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.Locale;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link DialogFragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link StatisticsDialog.OnFragmentInteractionListener} interface
  * to handle interaction events.
@@ -19,16 +27,19 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class StatisticsDialog extends DialogFragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private GameStatistics stats;
+
+    TextView numCorrectTextView;
+    TextView numQuestionsTextView;
+    TextView percentScoreTextView;
+    TextView letterGradeTextView;
+    TextView totalTimeTextView;
+    TextView avgTimeTextView;
 
     public StatisticsDialog() {
         // Required empty public constructor
@@ -38,40 +49,63 @@ public class StatisticsDialog extends DialogFragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param stats
      * @return A new instance of fragment StatisticsDialog.
      */
     // TODO: Rename and change types and number of parameters
-    public static StatisticsDialog newInstance(String param1, String param2) {
+    public static StatisticsDialog newInstance(GameStatistics stats) {
         StatisticsDialog fragment = new StatisticsDialog();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(ARG_PARAM1, stats);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        if(getArguments() != null) {
+            this.stats = getArguments().getParcelable(ARG_PARAM1);
         }
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistics_dialog, container, false);
+        View contentView = getActivity().getLayoutInflater().inflate(R.layout.fragment_statistics_dialog, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(contentView)
+                .setTitle("Quiz Statistics")
+                .setPositiveButton("OK", null);
+
+        numCorrectTextView = (TextView) contentView.findViewById(R.id.numCorrectTextView);
+        numQuestionsTextView = (TextView) contentView.findViewById(R.id.numQuestionsTextView);
+        percentScoreTextView = (TextView) contentView.findViewById(R.id.percentScoreTextView);
+        letterGradeTextView = (TextView) contentView.findViewById(R.id.letterGradeTextView);
+        totalTimeTextView = (TextView) contentView.findViewById(R.id.totalTimeTextView);
+        avgTimeTextView = (TextView) contentView.findViewById(R.id.avgTimeTextView);
+
+        numCorrectTextView.setText(String.valueOf(stats.correct));
+        numQuestionsTextView.setText(String.valueOf(stats.total));
+        percentScoreTextView.setText(String.valueOf(stats.getPercentScore()) + "%");
+        letterGradeTextView.setText(stats.getLetterGrade());
+        totalTimeTextView.setText(String.format(Locale.getDefault(), "%.2f s", stats.getTotalTime()));
+        avgTimeTextView.setText(String.format(Locale.getDefault(), "%.2f s", stats.getAvgTime()));
+
+        return builder.create();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(stats);
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) activity;
+        } else {
+            throw new RuntimeException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -104,6 +138,6 @@ public class StatisticsDialog extends DialogFragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(GameStatistics stats);
     }
 }

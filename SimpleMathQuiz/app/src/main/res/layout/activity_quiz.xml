@@ -195,20 +195,22 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Statistics"
-            android:id="@+id/button"
+            android:id="@+id/statsButton"
             android:background="@drawable/navigation_button"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:onClick="viewStats" />
 
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Answers"
-            android:id="@+id/button2"
+            android:id="@+id/ansButton"
             android:background="@drawable/navigation_button"
-            android:layout_below="@+id/button"
+            android:layout_below="@+id/statsButton"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:onClick="showAnswers" />
     </GridLayout>
 
 </RelativeLayout>
